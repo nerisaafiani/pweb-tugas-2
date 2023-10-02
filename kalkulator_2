@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kalkulator</title>
+    <script>
+      let input = '';
+      let currentNumber = '';
+      let operator = '';
+
+      function updateDisplay() {
+        document.getElementById("hasil").value = input;
+      }
+
+      function appendNumber(num) {
+        currentNumber += num;
+        input += num;
+        updateDisplay();
+      }
+
+      function appendOperator(op) {
+        if (currentNumber !== '') {
+          input += op;
+          operator = op;
+          currentNumber = '';
+          updateDisplay();
+        }
+      }
+
+      function calculate() {
+        if (currentNumber !== '' && operator !== '') {
+          input = eval(input);
+          updateDisplay();
+          currentNumber = input;
+          operator = '';
+        }
+      }
+
+      function clearInput() {
+        input = '';
+        currentNumber = '';
+        operator = '';
+        updateDisplay();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Kalkulator</h1>
+    <form>
+      <label for="hasil"></label>
+      <input type="text" id="hasil" disabled><br><br>
+
+      <button type="button" onclick="appendNumber('0')">0</button>
+      <button type="button" onclick="appendNumber('1')">1</button>
+      <button type="button" onclick="appendNumber('2')">2</button>
+      <button type="button" onclick="appendNumber('3')">3</button>
+      <button type="button" onclick="appendNumber('4')">4</button>
+      <button type="button" onclick="appendNumber('5')">5</button>
+      <button type="button" onclick="appendNumber('6')">6</button>
+      <button type="button" onclick="appendNumber('7')">7</button>
+      <button type="button" onclick="appendNumber('8')">8</button>
+      <button type="button" onclick="appendNumber('9')">9</button><br>
+      <button type="button" onclick="appendOperator('+')">+</button>
+      <button type="button" onclick="appendOperator('-')">-</button>
+      <button type="button" onclick="appendOperator('*')">*</button>
+      <button type="button" onclick="appendOperator('/')">/</button>
+      <button type="button" onclick="calculate()">=</button>
+      <button type="button" onclick="clearInput()">Clear</button>
+    </form>
+  </body>
+</html>
